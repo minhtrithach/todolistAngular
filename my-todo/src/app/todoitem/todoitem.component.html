@@ -1,0 +1,54 @@
+<div>
+    <script>$('#myModal').modal(options)</script>
+    <form  (submit)="addTodo()">
+        <div class="form-group">
+            <label  class="col-sm-2 col-form-label">Todo</label>
+            <div class="col-sm-10">
+            <input 
+            class="form-control" type="text" 
+            name="inputTodo"
+            placeholder="Enter todo..."
+            [(ngModel)]="inputTodo"/>
+            </div>
+            <br>
+            <label  class="col-sm-2 col-form-label">Relate Person</label>
+            <div class="col-sm-10">
+            <input 
+            class="form-control" type="text" 
+            name="inputRelatePerson"
+            placeholder="Enter Person Relate...."
+            [(ngModel)]="inputRelatePerson"/>
+            <br>
+            <label  class="col-sm-2 col-form-label">Estimate Due Date</label>
+            <input class="form-control" type="date" name="inputEstimateDate"[(ngModel)]="inputEstimateDate"/>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Add New</button>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Step list</th>
+                <th scope="col">Content</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">Estimate Due Date</th>
+                <th scope="col">Relate Person</th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let todo of todos; let i = index;" class="todo {{ (todo.completed ? 'done' : '') }}">
+                <th class="id">{{ i }}</th>
+                <td class="{{ (todo.completed ? 'done' : '') }}" (click)="toggleDone(i)">{{ todo.content }}</td>
+                <td class="start-date">{{todo.startdate}}</td>
+                <td class="estimate">{{todo.estimateDate}}</td>
+                <td class="relate-person">{{todo.relatePerson}}</td>
+                <td><button type="button" class="btn btn-danger" (click)="deleteTodo(i)">Remove</button>
+                    <button type="button" class="btn btn-primary">Update</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+   
+</div>
