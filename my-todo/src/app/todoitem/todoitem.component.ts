@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { Todo } from'../model/Todos';
+import { Todo } from '../model/Todos';
 @Component({
   selector: 'app-todoitem',
   templateUrl: './todoitem.component.html',
   styleUrls: ['./todoitem.component.css']
 })
 export class TodoitemComponent implements OnInit {
-  todos!:Todo[] ;
-  inputTodo:string = "";
-  inputRelatePerson:string=""
-  inputEstimateDate:Date = new Date(); 
-  date: Date = new Date();  
+  todos!: Todo[];
+  inputTodo: string = "";
+  inputRelatePerson: string = ""
+  inputEstimateDate: Date = new Date();
+  updateTodo: string = "";
+  updateRelatePerson: string = ""
+  updateEstimateDate: Date = new Date();
+  date: Date = new Date();
   constructor() { }
 
   ngOnInit(): void {
@@ -18,45 +21,46 @@ export class TodoitemComponent implements OnInit {
       {
         content: 'Todo 1',
         completed: false,
-        startdate:'21/11/2021',
-        relatePerson:'Tri',
-        estimateDate:'22/11/2021'
+        startdate: this.date,
+        relatePerson: 'Tri',
+        estimateDate: this.date
 
       }
     ]
   }
-  deleteTodo (id:number) {
+  deleteTodo(id: number) {
     this.todos = this.todos.filter((v, i) => i !== id);
   }
-  addTodo () {
+  addTodo() {
     this.todos.push({
       content: this.inputTodo,
       completed: false,
-      startdate:this.date.toString(),
-      relatePerson:this.inputRelatePerson,
-      estimateDate:this.inputEstimateDate.toString()
+      startdate: this.date,
+      relatePerson: this.inputRelatePerson,
+      estimateDate: this.inputEstimateDate
     });
     console.log(this.inputTodo)
-    this.inputTodo="";
+    this.inputTodo = "";
   }
-  updateContent(id:number){
-    this.todos.push({
-      content: this.inputTodo,
-      completed: false,
-      startdate:this.date.toString(),
-      relatePerson:this.inputRelatePerson,
-      estimateDate:this.inputEstimateDate.toString()
-    });
-    
+  updateContent(id: number) {
+    this.todos[id] = {
+      content: this.updateTodo,
+      completed: this.todos[id].completed,
+      startdate: this.date,
+      relatePerson: this.updateRelatePerson,
+      estimateDate: this.updateEstimateDate
+    }
+    console.log(this.todos[id]);
+    return this.todos[id];
   }
-  toggleDone (id:number) {
+  toggleDone(id: number) {
     this.todos.map((v, i) => {
       if (i == id) v.completed = !v.completed;
 
       return v;
     })
   }
-   
+
 
 
 }
