@@ -1,0 +1,13 @@
+<nb-card-body>
+    <form>
+   
+    <input type="text" nbInput placeholder="Add todo"name="todoUpdationObject.content" [(ngModel)]="todoUpdationObject.content">
+
+    <input type="text" nbInput placeholder="Enter relate person"name="todoUpdationObject.relatePerson" [(ngModel)]="todoUpdationObject.relatePerson">
+
+    <input nbInput placeholder="Pick Date" [nbDatepicker]="dateTimePicker" name="todoUpdationObject.estimateDate" [(ngModel)]="todoUpdationObject.estimateDate">
+    <nb-datepicker #dateTimePicker></nb-datepicker>
+    </form>
+    <button style="margin:0 0 0 16px" nbButton status="primary" >Submit</button>
+    <br>
+</nb-card-body >
