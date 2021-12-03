@@ -1,0 +1,6 @@
+<th>
+<ul class=" todo {{ (todo.completed ? 'done' : '') }}">Todo: {{ todo.content}}</ul>
+<ul scope="col">Start Date: {{todo.startDate | date:'yyyy-MM-dd'}}</ul>
+<ul scope="col">Estimate Date:{{todo.estimateDate| date:'yyyy-MM-dd'}}</ul>
+<ul scope="col">Relate Person:{{todo.relatePerson}}</ul>
+</th>

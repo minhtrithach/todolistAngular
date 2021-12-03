@@ -17,7 +17,7 @@ export class TodoItemAdditionComponent implements OnInit {
     estimateDate: this.currentDate
 
 }
-@Output() newInputEvent = new EventEmitter<Todo>();
+@Output() additionTodo = new EventEmitter<Todo>();
   ngOnInit(): void {
   }
   addTodo(){
@@ -30,7 +30,7 @@ export class TodoItemAdditionComponent implements OnInit {
     }
   }
   handleAddTodo(todo:Todo) {
-    this.newInputEvent.emit(todo)
+    this.additionTodo.emit(todo)
   }
 }
 

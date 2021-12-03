@@ -10,39 +10,54 @@ import { Todo } from '../model/todo.model';
 export class TodoFeatureComponent implements OnInit {
   constructor(protected dialogService: NbDialogService) { }
   todos!: Todo[];
-  inputTodo: Todo = new Todo();
-  updateTodo: Todo = new Todo();
+ 
   currentDate: Date = new Date();
-  show=false;
-  updateIndex!: number;
+  showAddition=false;
+  showUpdation=false;
+  updationIndex!: number;
+
   ngOnInit(): void {
     this.todos = [
       {
-        content: "Ăn",
+        content: "Todo 1",
         completed: false,
         startDate: this.currentDate,
         estimateDate: this.currentDate,
         relatePerson: 'Trí',
       },
       {
-        content: "Ngủ",
+        content: "Todo 2",
         completed: false,
         startDate: this.currentDate,
         estimateDate: this.currentDate,
-        relatePerson: 'Trí',
+        relatePerson: 'Minh',
       }
     ];
 
   }
-
- 
+  updateIndex(i:number)
+  {
+    console.log(i)
+    this.updationIndex=i;
+    
+  }
+  updateTodo(todo:Todo,i:number)
+  {
+    this.todos[i]={
+      content:todo.content,
+      completed:todo.completed,
+      estimateDate:todo.estimateDate,
+      startDate:todo.startDate,
+      relatePerson:todo.relatePerson
+    }
+  }
   addTodo(todo: Todo) {
     this.todos.push(todo);
   }
   handleDelete(id: number) {
     this.todos = this.todos.filter((v, i) => i !== id);
   }
-  handleToggleDone(index: number) {
+  toggleDone(index: number) {
     this.todos.map((v, i) => {
       if (i == index) v.completed = !v.completed;
 

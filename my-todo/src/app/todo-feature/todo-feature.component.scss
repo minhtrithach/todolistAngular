@@ -1,0 +1,11 @@
+.list-todo{
+    display: flex;
+   justify-content: space-between;
+
+   cursor: pointer;
+
+   .list-todo__done{
+    cursor: pointer;
+    text-decoration: line-through;
+}
+}

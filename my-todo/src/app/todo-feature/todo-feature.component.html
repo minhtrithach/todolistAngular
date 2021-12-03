@@ -1,0 +1,39 @@
+<div>
+
+    <button nbButton status="{{showAddition ?'danger': 'primary'  }}"
+        (click)="showAddition = !showAddition">{{showAddition ? 'close' : 'add new todo'}}</button>
+    <div *ngIf="showAddition">
+        <app-todo-item-addition (additionTodo)="addTodo($event)"></app-todo-item-addition>
+    </div>
+
+    <div class="list-todo" *ngFor="let todo of todos; let i = index;">
+        <div class="col">
+            <ul>Step: {{i}}</ul>
+        </div>
+        <div class=" {{ (todo.completed ? 'list-todo__done' : '') }}" (click)="toggleDone(i)">
+            <app-todo-item [todo]="todo"></app-todo-item>
+        </div>
+        <div class="col"> <button nbButton status="danger" (click)="open(dialog)">Remove</button></div>
+        <div class="col"><button nbButton status="{{ showUpdation ?'danger': 'primary'  }}"
+                (click)=" showUpdation = !showUpdation">{{ showUpdation ? 'Close' : 'Update'}}</button>
+            <div>
+                <div class="col" *ngIf="showUpdation">
+                    <app-todo-item-updation (updationTodo)="updateTodo($event,i)"></app-todo-item-updation>
+                </div>
+                <ng-template #dialog let-data let-ref="dialogRef">
+                    <nb-card>
+                        <nb-card-header>Inform</nb-card-header>
+                        <nb-card-body>
+                            Do you want delete?
+                        </nb-card-body>
+                        <nb-card-footer>
+                            <button nbButton (click)="ref.close()">close</button>
+                            <button style="margin:0 0 0 16px" nbButton status="danger" (click)="handleDelete(i)"
+                                (click)="ref.close()">Delete</button>
+                        </nb-card-footer>
+                    </nb-card>
+                </ng-template>
+            </div>
+
+
+        </div>
